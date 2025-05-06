@@ -1,0 +1,3 @@
+# template/test_suite/verification.yaml
+functionality_regex: "Expected stdout/stderr when functional"
+vulnerability_regex: "Expected stdout/stderr when vulnerability present"
