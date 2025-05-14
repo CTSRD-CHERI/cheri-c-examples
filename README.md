@@ -42,5 +42,5 @@ example1/
 │   ├── README.md               # (additional named section for what was changed & why) Emphasize improvements & pitfalls (For human eval. Not LLM)
 │   └── Makefile
 └── test_suite/
-  └── verification.yaml         # Contains expected terminal output strings for regex evaluation of functionality & vulnerability tests.
+    └── verification.yaml         # Contains expected terminal output strings for regex evaluation of functionality & vulnerability tests.
 ```
