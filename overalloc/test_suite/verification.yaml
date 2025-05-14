@@ -1,0 +1,3 @@
+# overalloc/test_suite/verification.yaml
+functionality_regex: "ctest1:  over alloc 0x4083a000 0x4083a190 10 2 p1[0].a[0]=99 "
+# vulnerability_regex: ""

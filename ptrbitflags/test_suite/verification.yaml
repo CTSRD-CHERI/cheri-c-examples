@@ -1,0 +1,3 @@
+# ptrbitflags/test_suite/verification.yaml
+functionality_regex: "ctest1: use 0 bits of pointer for some kind of flag, use uintptr_t instead of uint64_t to cast .. val = 10.000000"
+# vulnerability_regex: ""

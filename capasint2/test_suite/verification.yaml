@@ -1,0 +1,3 @@
+# capasint2/test_suite/verification.yaml
+functionality_regex: "ctest1:  int ptr conversion (issue#487)"
+# vulnerability_regex: ""
