@@ -1,0 +1,3 @@
+# ptrszchk/test_suite/verification.yaml
+functionality_regex: "ctest1: size of pointer checks incomplete ..returns sizeof(void*)="
+# vulnerability_regex: ""
