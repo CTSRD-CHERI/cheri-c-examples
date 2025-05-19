@@ -6,12 +6,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
+#include <assert.h>
 
 /*
  ptr_size_checks 
 */
-*
- * CHERI CHANGES START
+
+ /* CHERI CHANGES START
  * {
  *   "updated": 20250422,
  *   "target_type": "app",
@@ -39,7 +40,7 @@ struct align_test1
 struct align_test1 a1;
 
 /***********************************************/
-void * ctest1(void)
+int ctest1(void)
 {
 uintptr_t i128;
 long i64;
@@ -69,5 +70,5 @@ int main(int argc, char * argv[])
 long test_to_run=0x1;
 int ret = ctest1();
 printf(" ..returns sizeof(void*)= %d\n",ret);
-
+assert(ret!=0);
 }
