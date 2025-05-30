@@ -21,7 +21,7 @@ void ** ctest1(void)
 {
 static double a[2048];
 printf("ctest1: pointer-casts requires proper alignment  \n");
-  char *p0 = (char*)a;
+   void *p0 = (void*)&a[1];
   // Pointer p0 is aligned to a 8 byte boundary;
   // type 'void **' requires capability alignment (16 bytes)
   return (void**)p0;
@@ -37,5 +37,5 @@ long test_to_run=0x1;
 void ** v=ctest1();
 uint64_t blah[128];
 *(uint64_t**)v = blah;
-printf(" .. ctest1, v=%p &blah = %p Passes?? Expected to pass but might be issue in future\n",v, *(uint64_t**)v);
+printf(" .. ctest1, v=%p &blah = %p Passes ?? Expected to pass but might be issue in future\n",v, *(uint64_t**)v);
 }
