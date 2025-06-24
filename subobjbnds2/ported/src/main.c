@@ -10,7 +10,6 @@
 /*
  subobject_bounds 2
 */
-*
  /* CHERI CHANGES START
  * {
  *   "updated": 20250422,

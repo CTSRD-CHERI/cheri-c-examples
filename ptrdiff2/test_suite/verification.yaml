@@ -1,0 +1,3 @@
+# ptrdiff2/test_suite/verification.yaml
+functionality_regex: "ptrdiff2: returning  &a[8]"
+# vulnerability_regex: ""

@@ -1,0 +1,3 @@
+# ptrdiff/test_suite/verification.yaml
+functionality_regex: "ptrdiff3:  returning the addrtess of buf"
+# vulnerability_regex: ""

@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
+#include <assert.h>
 
 /*
  ptr_size_checks 
@@ -27,7 +28,7 @@ struct align_test1
 struct align_test1 a1;
 
 /***********************************************/
-void * ctest1(void)
+int ctest1(void)
 {
 long i64;
 int i32;
@@ -53,5 +54,6 @@ int main(int argc, char * argv[])
 long test_to_run=0x1;
 int ret = ctest1();
 printf(" ..returns sizeof(void*)= %d\n",ret);
+assert(ret !=0);
 
 }

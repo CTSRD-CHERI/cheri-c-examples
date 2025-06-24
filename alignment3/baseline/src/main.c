@@ -15,8 +15,8 @@ typedef unsigned long uint64_t;
 typedef unsigned char uint8_t;
 
 extern int printf(const char *, ...);
-
 /*******************************************/
+static char mystr[]="hello world";
 static char ctest7_a[100]; // Aligned to 1 byte maybe
 void ctest1(intptr_t *pCap, size_t n) {
   // Warn: Destination memory object pointed by 'intptr_t * __capability'
@@ -25,7 +25,9 @@ void ctest1(intptr_t *pCap, size_t n) {
   // copied object may have its capabilities tags stripped earlier
   // due to underaligned storage
   printf("ctest1: alignment cap memcpy? (%zu)\n", n);
-  memcpy(pCap, ctest7_a, n);
+  char *p = &mystr[0];
+  memcpy(&ctest7_a[8],&p, n);
+  memcpy(pCap, &ctest7_a[8], n);
   return;
 }
 
@@ -39,5 +41,5 @@ int main(int argc, char * argv[])
 long test_to_run=0x1;
 intptr_t cap;
 ctest1(&cap, sizeof(cap));
-printf(" .. cap  = %llx\n",cap);
+printf(" .. cap  = %llx  val=%s\n",cap, (char*) cap);
 }
