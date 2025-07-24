@@ -1,3 +1,0 @@
-# ptrdiff/test_suite/verification.yaml
-functionality_regex: "ptrdiff: returning diff of a[] from &a0[0]= 4"
-# vulnerability_regex: ""
