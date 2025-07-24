@@ -1,3 +1,0 @@
-# alignment2/test_suite/verification.yaml
-functionality_regex: "ctest1: pointer-casts requires proper alignment .. ctest1, &blah = 0xfffffff7fb30 Passes?? Expected to pass but might be issue in future"
-# vulnerability_regex: ""
