@@ -24,8 +24,8 @@ int ctest1(char *p, int len)
     printf("about to do memset of %p with len %d\n",p,len);
 /*  if CHERI, we can use intrinisic to check that p & len are valid */
 #if __has_feature(capabilities)
-    int blen = cheri_length_get(p);
-    if (len > blen) return 0; 
+    size_t blen = cheri_length_get(p);
+    if ((size_t)len > blen) return 0; 
 #endif
     printf("about to do memset of %p with len %d\n",p,len);
     memset(p,0,len);
