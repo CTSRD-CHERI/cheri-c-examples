@@ -13,6 +13,9 @@ make
 #expected result:
 ./build/readplus1
 
+readplus1: adding up 8 elements in array
+ .. readplus1, res = 36
+
 
 
 

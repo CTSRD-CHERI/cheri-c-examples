@@ -13,6 +13,10 @@ make
 #expected result:
 ./build/readplus1
 
+readplus1: adding up 8 elements in array
+In-address space security exception (core dumped)
+
+
 
 
 
