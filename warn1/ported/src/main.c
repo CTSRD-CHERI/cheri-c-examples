@@ -1,3 +1,15 @@
+/*warn1 */
+// CHERI CHANGES START
+// {
+//   "updated": 20230509,
+//   "target_type": "kernel",
+//   "changes": [
+//     "pointer_integer_warning"
+//   ]
+// }
+// CHERI CHANGES END
+
+
 #include <stdint.h>
 #include <stdio.h>
 void * f(void * arg)
