@@ -4,54 +4,104 @@
 
 /* ARDUPLANE  issue */
 
+/*
+ * CHERI CHANGES START
+ * {
+ *   "updated": 20251007,
+ *   "target_type": "app",
+ *   "changes": [
+ *     "provenance"
+ *   ]
+ * }
+ * CHERI CHANGES END
+ */
+
+
+
+
 #define AP_VAROFFSET(type, element) (((ptrdiff_t)(&((const type *)1)->element))-1)
+
+#define PARAM_DIRECT 0
+#define PARAM_INDIRECT 1
 
 class ClassB {
 public:
 	ClassB() {
 	}
 	int8_t param_b1 = 33;
+        int flag= PARAM_DIRECT;  
 };
-static int param_b1_offset = AP_VAROFFSET(ClassB, param_b1);
 
 class ClassA {
 public:
 	ClassA() {
-		param_class_b = new ClassB();
 	}
 	int8_t param_a1 = 11;
 	int8_t param_a2 = 22;
-	ClassB *param_class_b;    /* points to another set of parameters */
+        int flag = PARAM_DIRECT;
 };
+
+class ClassBptr
+{
+
+public:
+	ClassBptr() {
+		param_bptr = new ClassB();
+	}
+	ClassB *param_bptr;    /* points to another set of parameters */
+        int flag = PARAM_INDIRECT;    /* indirect */
+};
+
+
+class Param
+{
+public:
+      Param() {
+     }     
+     ClassA a;
+     ClassBptr b;
+};
+
+
+static int class_a_offset = AP_VAROFFSET(Param, a);
+static int class_bptr_offset = AP_VAROFFSET(Param, b);
+
+static int param_b1_offset = AP_VAROFFSET(ClassB, param_b1);
 static int param_a1_offset = AP_VAROFFSET(ClassA, param_a1);
 static int param_a2_offset = AP_VAROFFSET(ClassA, param_a2);
-static int param_class_b_offset = AP_VAROFFSET(ClassA,
-		param_class_b);
+static int param_class_b_offset = AP_VAROFFSET(ClassBptr, param_bptr);
 
 int main() {
-	ClassA class_a;
+	Param class_p;
 
 	int8_t *val;
 
-	printf("a1=%#p\n", &class_a.param_a1);
 
-        intptr_t base = (intptr_t) &class_a;
-	printf("class_a addr %#p\n", (void *) base);
-	val = (int8_t *)(base + param_a1_offset);
+        intptr_t base = (intptr_t) &class_p;
+        intptr_t base_a = (intptr_t) base + class_a_offset;
+        intptr_t base_bptr = (intptr_t) base + class_bptr_offset;
+        intptr_t base_b = (intptr_t) *((intptr_t*) base_bptr );
+        printf("base=%#p base_a=%#p base_bptr=%#p base_b=%#p\n", (void*) base, (void*) base_a, (void *)base_bptr, (void *)base_b);
+
+	val = (int8_t *)(base_a + param_a1_offset);
 	printf("param_a1 addr %#p, val %d\n", val, *val);
-	val = (int8_t *)(base + param_a2_offset);
+	val = (int8_t *)(base_a + param_a2_offset);
 	printf("param_a2 addr %#p, val %d\n", val, *val);
-	val = (int8_t *)(base + param_class_b_offset);
-	printf("param_class_b addr %#p, val %d\n", val, *val);
+	val = (int8_t*)(base_bptr + param_class_b_offset);
+	printf("param_class_b addr %#p, val =%#p\n", val, (void*) *((ClassB **)val));
+        val = (int8_t*) (base_b + param_b1_offset); 
+	printf("param_b1 addr %#p, val =%d\n", val, *val);
 
+#if 0
 	void **p = (void **) ((intptr_t) &class_a
 			+ param_class_b_offset);
 	printf("p=%#p *p=%#p\n", p, *p);
 	ptrdiff_t new_offset = (intptr_t)*p - (intptr_t)&class_a;
+	printf("new_off (diff between ClassA and *ClassA.param_class_b)= %tx\n", new_offset);
 	intptr_t q = (intptr_t) &class_a + new_offset + param_b1_offset;
-	printf("q=%#p\n", (void *) q);
-	printf("val=%d\n", *((int8_t *)q));
-
+	printf("classA[new_offset+param_b1 offset] aka  q=%#p\n", (void *) q);
+	printf("parameter_b1 val at *q =%d\n", *((int8_t *)q));
+#endif
 	return 0;
 
 
