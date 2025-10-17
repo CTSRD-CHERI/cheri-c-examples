@@ -16,13 +16,6 @@ typedef unsigned char uint8_t;
 
 extern int printf(const char *, ...);
 
-
-#include <stdlib.h>
-#include <stddef.h>
-#include <cheri.h>
-#include <stdio.h>
-#include <stdint.h>
-
 const void *ctest(uintptr_t buf, uintptr_t off)
 {
     printf(" ptrdiff3:  returning the addrtess of buf[offset] = %p\n", (void*) (off+buf)); 
