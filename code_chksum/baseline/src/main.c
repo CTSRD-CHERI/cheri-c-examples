@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 extern void _start(void);
-extern void _fini(void);
+void last(void);  //no fini symbol with cherbsd for some reason?
 uint64_t compute_sum(uint8_t * data,ptrdiff_t sz);
 
 
@@ -16,12 +16,12 @@ uint64_t compute_sum(uint8_t * data,ptrdiff_t sz) {
 
 int main(void)
 {   
-    ptraddr_t fp2 = _fini;  //ptr to fini
+    ptraddr_t fp2 = (ptraddr_t) last;  //ptr to fini
     ptraddr_t fp  = _start;  //ptr to start 
     ptrdiff_t len = fp2-fp;
-    printf("len=%tx s=%#p f=%#p \n", len, _start, _fini);
+    printf("len=%tx s=%#p f=%#p \n", len, _start, (void *)last);
     uint64_t sum = compute_sum((uint8_t *) _start, len);
     printf("sum = %tx\n", sum);
 }
 
-
+void last(void){}

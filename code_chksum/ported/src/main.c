@@ -17,7 +17,7 @@
  */
 
 extern void _start(void);
-extern void _fini(void);
+void last(void);
 uint64_t compute_sum(uint8_t * data,ptrdiff_t sz);
 
 uint64_t compute_sum(uint8_t * data,ptrdiff_t sz) {
@@ -32,10 +32,10 @@ int main(void)
     uint64_t sum=0LL;
     ///get program counter. This is not a sentry!
     uint8_t * mypc = (uint8_t *)__builtin_cheri_program_counter_get();
-    ptraddr_t fp2 = _fini;  //offset to _dinit 
+    ptraddr_t fp2 = (ptraddr_t)last;  //offset to _dinit 
     ptraddr_t fp = _start;  //offset to _init 
-    ptrdiff_t len = _fini - _start;
-    printf("len=%tx s=%#p f=%#p \n", len, _start, _fini);
+    ptrdiff_t len =  last - _start;
+    printf("len=%tx s=%#p f=%#p \n", len, _start, last);
     //calculate distrance between current pcc and_start 
     ptraddr_t newdist = fp  - (ptraddr_t) mypc; 
     printf("mypc =%#p   newdist=%tx \n", mypc,newdist);
@@ -45,3 +45,4 @@ int main(void)
 }
 
 
+void last(void){}
