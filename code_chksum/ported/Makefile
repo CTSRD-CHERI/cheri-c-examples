@@ -1,16 +1,18 @@
 CC = clang
-CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
+MUSL_HOME?=/morello/musl
 TARGET = aarch64-linux-musl_purecap
-MUSL_HOME = /morello/musl
-#CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive -Wno-int-conversion  -march=morello+c64 -mabi=purecap
-CFLAGS = -g -Wcheri-provenance   -Wno-int-conversion  -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib -fuse-ld=lld -static --sysroot $(MUSL_HOME) -v
-CFLAGSNA = -g -Wcheri-provenance -march=morello+c64 -mabi=purecap
-APP = code_chksum 
+#CFLAGS = -march=morello -mabi=aapcs -O0 -Wall -g -I.
+CFLAGS = -march=morello -mabi=purecap --target=$(TARGET) -O0 -Wall -g -I.  --sysroot $(MUSL_HOME) -v
+
+CC1 ?= /usr/local64/llvm-morello-csa/bin/clang-14
+CFLAGSNA ?= -g -Wcheri-provenance -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
+APP ?= code_chksum 
 BUILD_DIR = build
+LDFLAGS = -fuse-ld=lld -static  -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib  
 
 $(APP):  src/main.c
 	mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS)  src/main.c -o $(BUILD_DIR)/$(APP) 
+	$(CC) $(CFLAGS) $(LDFLAGS) src/main.c -o $(BUILD_DIR)/$(APP) 
 
 analyze:  src/main.c
 	mkdir -p $(BUILD_DIR)
