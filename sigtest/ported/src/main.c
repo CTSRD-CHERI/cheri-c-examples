@@ -17,7 +17,6 @@
  * CHERI CHANGES END
  */
 
-
 // Declare a buffer to hold the program's state
 static sigjmp_buf jump_buffer;
 
@@ -33,7 +32,7 @@ static void signal_handler(int signo) {
 
 // A function that will cause a segmentation fault
 void cause_segfault(void) {
-    printf("Entering a dangerous function that will cause a SIGSEGV or SIGPROT.\n");
+    printf("Entering a dangerous function that will cause a SIGSEGV .\n");
     // Attempt to go past array bounds
     int buf[8];
     for(int i=0; i<=8; i++) buf[i]=0;
@@ -42,7 +41,7 @@ void cause_segfault(void) {
 int main(void) {
     struct sigaction sa;
 
-    // 1. Set up the signal handler for SIGSEGV & SIGPROT.
+    // 1. Set up the signal handler for SIGSEGV .
     // Specify the signal handler function.
     sa.sa_handler = signal_handler;
     // Clear the signal mask for the handler.
@@ -50,16 +49,12 @@ int main(void) {
     // Don't set any special flags.
     sa.sa_flags = 0;
 
-    if (sigaction(SIGPROT, &sa, NULL) == -1) {
-        perror("sigaction, SIGPROT");
-        exit(EXIT_FAILURE);
-    }
     if (sigaction(SIGSEGV, &sa, NULL) == -1) {
         perror("sigaction, SIGSEGV");
         exit(EXIT_FAILURE);
     }
 
-    printf("Signal handler for SIGSEGV/SIGPROT has been set up.\n");
+    printf("Signal handler for SIGSEGV has been set up.\n");
 
     // 2. Set the jump point with sigsetjmp.
     // The second argument (1) tells sigsetjmp to save the signal mask.
