@@ -31,7 +31,8 @@ struct my_struct {
     int value1;
     int value2;
     struct my_struct2 inner;
-} __subobject_use_container_bounds;
+//} __subobject_use_container_bounds;
+} __attribute__((cheri_no_subobject_bounds));
 
 void process_inner(struct my_struct2 * ss) {
 
