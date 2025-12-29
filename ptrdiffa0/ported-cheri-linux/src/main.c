@@ -57,7 +57,7 @@ void ctest1( void *b,  ptrdiff_t * new_off)
    intptr_t base;
    base = get_base(b);
    void **p = (void **) (base + *new_off);  
-   *new_off =  ((char*)*p) - base;
+   *new_off = (ptrdiff_t)  ((char*)*p) - base;
    printf("p=%p *p=%p s1=%p  base=%p newoff=%tx\n ", p, *p, s1, (void*) base, *new_off);
 }
 
