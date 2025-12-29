@@ -47,7 +47,7 @@ int main() {
     printf("Message queue  msg %d sent successfully\n",i);
     msg1 = &msg[i][0];
     sprintf(msg1,"this is msg %d",i);
-    ptrdiff_t off = msg1 - &msg[i][0];
+    ptrdiff_t off = msg1 - &msg[0][0];
     int r2 =  mq_send(mq,(char*)&off, 8,1);
     printf("i=%d\n",i);
     printf("send, %d\n", r2);
@@ -61,7 +61,7 @@ int main() {
     ssize_t   r =mq_receive(mq, (char *) &result2, 8, &pri);
     if (r<0) perror("recv");
     printf("got a result, %lx %zd\n",result2,r);
-    result = &msg[i][0]+result2;
+    result = &msg[0][0]+result2;
     printf(" msg is %s\n", result);
    }
     // Close the message queue
