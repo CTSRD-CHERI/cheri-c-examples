@@ -31,7 +31,7 @@ extern int printf(const char *, ...);
 void * ctest1(uintptr_t x)
 {
  printf("ctest1:  int ptr conversion (issue#487)\n");
- return x;
+ return (void *)x;
 }
 
 

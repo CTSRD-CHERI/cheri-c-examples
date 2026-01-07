@@ -32,8 +32,8 @@ int main(void)
     uint64_t sum=0LL;
     ///get program counter. This is not a sentry!
     uint8_t * mypc = (uint8_t *)__builtin_cheri_program_counter_get();
-    ptraddr_t fp2 = _fini;  //offset to _dinit 
-    ptraddr_t fp = _start;  //offset to _init 
+   // ptraddr_t fp2 = (ptraddr_t) _fini;  //offset to _dinit 
+    ptraddr_t fp =  (ptraddr_t) _start;  //offset to _init 
     ptrdiff_t len = _fini - _start;
     printf("len=%tx s=%#p f=%#p \n", len, _start, _fini);
     //calculate distrance between current pcc and_start 

@@ -16,8 +16,8 @@ uint64_t compute_sum(uint8_t * data,ptrdiff_t sz) {
 
 int main(void)
 {   
-    ptraddr_t fp2 = _fini;  //ptr to fini
-    ptraddr_t fp  = _start;  //ptr to start 
+    ptraddr_t fp2 = (ptraddr_t) _fini;  //ptr to fini
+    ptraddr_t fp  = (ptraddr_t) _start;  //ptr to start 
     ptrdiff_t len = fp2-fp;
     printf("len=%tx s=%#p f=%#p \n", len, _start, _fini);
     uint64_t sum = compute_sum((uint8_t *) _start, len);
