@@ -20,8 +20,7 @@ or "ported".  i.e. "baseline-morello-arm-purecap", "ported-cheri-linux", etc. (s
 ### Example Directory Layout
 ```
 example1/
-├── baseline-morello-arm-purecap/          # Baseline Code (Full repo should be available to LLM)
-├── baseline-cheri-linux/                  # Baseline Code (Full repo should be available to LLM)
+├── baseline-x86/          # Baseline Code (Full repo should be available to LLM)
 ...
 ├── ported-morello-arm-purecap/            # Ground Truth Port (Not shown to LLM)
 ├── ported-cheri-linux/                    # Ground Truth Port (Not shown to LLM)
@@ -30,7 +29,7 @@ example1/
 
 ```
 example1/
-├── baseline-morello-arm-purecap/
+├── baseline-x86/
 │   ├── src/
 │   │   ├── main.c
 │   │   └── helper.c
