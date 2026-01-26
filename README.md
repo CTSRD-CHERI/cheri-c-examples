@@ -49,6 +49,13 @@ example1/
 │   │   └── helper.c 
 │   ├── build/                  # Include Binary
 │   ├── README.md               # (additional named section for what was changed & why) Emphasize improvements.
+├── test-suite/
+│   ├── test-all-cheri-linux.sh
+│   ├── test-all-x86.sh
+│   ├── test-build-cheri-linux.sh
+│   ├── test-build-x86.sh
+│   ├── test-run-cheri-linux.sh
+│   ├── test-run-x86.sh
 ...
 ```
 # Testing
