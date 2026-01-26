@@ -15,8 +15,10 @@ echo "Building $NAME." 2>&1 | tee -a $LOGFILE_FULL_PATH
 ./test-build-cheri-linux.sh 2>&1 | tee -a $LOGFILE_FULL_PATH
 
 # Stop if build failed.
-exit ${PIPESTATUS[0]}
-
+if (( PIPESTATUS[0] != 0 )); then
+    echo "Build failed, aborting run."
+    exit ${PIPESTATUS[0]}
+fi
 echo "Testing $NAME."
 ./test-run-cheri-linux.sh 2>&1 | tee -a $LOGFILE_FULL_PATH
 

@@ -1,4 +1,5 @@
 set -o pipefail
+NAME="overalloc-x86"
 
 cd ../baseline-x86/
 

@@ -1,4 +1,5 @@
 set -o pipefail
+NAME="overalloc-cherilinux"
 
 cd ../ported-cheri-linux/
 
