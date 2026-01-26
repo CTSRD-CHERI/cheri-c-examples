@@ -73,7 +73,6 @@ Results will be printed to the command line.
 ### To build and test and save results to a log file:
 ```
 ./test-all-[platform].sh
-
 ```
 
 This will save results in a log file in the folder:  
