@@ -29,7 +29,7 @@ example1/
 ├── baseline-x86/          # Baseline Code (Full repo should be available to LLM)
 ├── ported-morello-arm-purecap/            # Ground Truth Port (Not shown to LLM)
 ├── ported-cheri-linux/                    # Ground Truth Port (Not shown to LLM)
-└── test-suite/                # (In Progress)
+└── test-suite/                # (Platform-specific tests for building an running)
 ...
 ```
 
