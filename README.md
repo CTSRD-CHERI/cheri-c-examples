@@ -87,14 +87,8 @@ Log file name:
 test-[Example]-[Platform].log
 ```
 
-Example folder name:  
+Example folder name and file name:  
 
 ```
-2026-01-26-184519-overalloc-cherilinux-cherilinux0
-```
-
-Example log file name:  
-
-```
-test-overalloc-cherilinux.log
+/test-suite/results/2026-01-26-184519-overalloc-cherilinux-cherilinux0/test-overalloc-cherilinux.log
 ```
