@@ -14,8 +14,14 @@ The idea is to create a structured set of sample projects where each â€œexampleâ
    - Scripts should include inline comments indicating what patches were applied & why.
    - Readme should emphasize improvements & original pitfalls For human evaluators.
 
+3. **Test Suite**  
+- This contains a simple set of tests to check for success or failure of the build and run.
+- Each shell script will test the build or run of a single example on a single platform.
+- (ex.:  test-build-cheri-linux.sh tests the build for the example on CHERI Linux).
+- The script test-all-[platform].sh will run the build and test scripts for a platform and save them in a results folder in the test-suite directory.
+
 Since the baseline and ported are for specific architectures, the architecture name is depicted after "baseline"
-or "ported".  i.e. "baseline-morello-arm-purecap", "ported-cheri-linux", etc. (see example below)
+or "ported".  i.e. "baseline-x86", "ported-cheri-linux", etc. (see example below)
 
 ### Example Directory Layout
 ```
