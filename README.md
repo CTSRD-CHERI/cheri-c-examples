@@ -18,9 +18,8 @@ The idea is to create a structured set of sample projects where each â€œexampleâ
 - This contains a simple set of tests to check for success or failure of the build and run.
 - Each shell script will test the build or run of a single example on a single platform.
 - (ex.:  test-build-cheri-linux.sh tests the build for the example on CHERI Linux).
-- See 'testing' section below
 - The script test-all-[platform].sh will run the build and test scripts for a platform and save them in a results folder in the test-suite directory.
-
+- See 'testing' section below
 
 
 Since the baseline and ported are for specific architectures, the architecture name is depicted after "baseline"
