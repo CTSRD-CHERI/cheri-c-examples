@@ -1,9 +1,10 @@
 set -o pipefail
-NAME="EXAMPLE-x86"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-x86"
 
 cd ../baseline-x86/
 
-RUN_RESULTS=$(./build/EXAMPLE 2>&1)
+RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 
 echo "$RUN_RESULTS"
 

@@ -1,5 +1,6 @@
 set -o pipefail
-NAME="EXAMPLE-cherilinux"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-cherilinux"
 
 cd ../ported-cheri-linux/
 

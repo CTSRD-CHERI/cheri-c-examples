@@ -1,5 +1,6 @@
 set -o pipefail
-NAME="EXAMPLE-x86"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-x86"
 
 cd ../baseline-x86/
 

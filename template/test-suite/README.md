@@ -2,34 +2,27 @@
 Test the build and run for each example on a specific platform.
 
 # To make a test suite for a new example
-1. **Copy template test suite**
+### **Copy template test suite**
 
 Copy scripts in this folder into the new example.
 
 From the cheri-c-examples folder:
 
 ```
+mkdir [new-example]/test-suite
 cp -r template/test-suite/*.sh [new-example]/test-suite
 ```
 
-2. **Update test-build scripts**
+### **Update test-build scripts**
 
-In each "test-build-[platform].sh" script, change NAME to match the example and platform (ex. NAME="overalloc-cherilinux").
+Make any changs to each "test-build-[platform].sh" script.  As long as the expected result is that the build succeeds, no changes are needed.
 
-As long as the expected result is that the build succeeds, no other changes are needed.
+### **Update test-run scripts**
 
-3. **Update test-run scripts**
-
-In each "test-run-[platform].sh" script, change NAME to match the example and platform (ex. NAME="overalloc-cherilinux").
-
-Change RUN\_RESULTS to match the executable produced by the example (ex. RUN\_RESULTS=$(./build/overalloc 2>&1))
-
-Put in SUCCESS\_CONDITION for test to pass.
+In each "test-run-[platform].sh" script, put in SUCCESS\_CONDITION for test to pass.
 
 Extra code and modification will be needed for some examples (such as if run is expected to fail, or intermediate code to make the success condition is needed).
 
-3. **Update test-all scripts**
+### **Update test-all scripts**
 
-In each "test-run-[platform].sh" script, change NAME to match the example and platform (ex. NAME="overalloc-cherilinux").  
-
-No other changes are needed.
+For each "test-run-[platform].sh" script, no changes are needed.  These just create the results folder and call the other scripts above.

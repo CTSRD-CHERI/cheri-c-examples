@@ -2,7 +2,8 @@ set -o pipefail
 
 # Create name for results folder
 DATETIME=$(date +"%Y-%m-%d-%H%M%S")
-NAME="[EXAMPLE]-cherilinux"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-cherilinux"
 HOST=$(hostname)
 RESULTS_FOLDER="$DATETIME-$NAME-$HOST"
 mkdir -p ./results/$RESULTS_FOLDER
