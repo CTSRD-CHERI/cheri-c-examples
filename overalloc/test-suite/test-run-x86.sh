@@ -1,9 +1,10 @@
 set -o pipefail
-NAME="overalloc-x86"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-x86"
 
 cd ../baseline-x86/
 
-RUN_RESULTS=$(./build/overalloc)
+RUN_RESULTS=$(./build/$EXAMPLE)
 
 status=${PIPESTATUS[0]}
 if (( status != 0 )); then

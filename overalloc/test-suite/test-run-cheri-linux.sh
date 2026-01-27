@@ -1,9 +1,10 @@
 set -o pipefail
-NAME="overalloc-cherilinux"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-cherilinux"
 
 cd ../ported-cheri-linux/
 
-RUN_RESULTS=$(./build/overalloc 2>&1)
+RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 status=$?
 
 
