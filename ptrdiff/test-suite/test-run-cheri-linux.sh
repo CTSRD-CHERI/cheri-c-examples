@@ -1,9 +1,10 @@
 set -o pipefail
-NAME="EXAMPLE-cherilinux"
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-cherilinux"
 
 cd ../ported-cheri-linux/
 
-RUN_RESULTS=$(./build/EXAMPLE 2>&1)
+RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 
 echo "$RUN_RESULTS"
 
@@ -13,7 +14,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Fq "ptrdiff, array[0] = 0" <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
 else
