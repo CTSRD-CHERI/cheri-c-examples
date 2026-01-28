@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 set -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-cherilinux"
+NAME="$EXAMPLE-ported-cheri-linux"
 
 cd ../ported-cheri-linux/
 
@@ -24,10 +26,13 @@ echo "$RUN_RESULTS"
 if (( status == 0 )); then
     echo "Program ran without triggering CHERI security exception (failed test)."
     echo "RESULT:  $NAME run failed."
+    exit $status
 elif (( status == 139 )); then
     echo "CHERI security exception successfully triggered (results in segmentation fault)."
     echo "RESULT:  $NAME run success."
+    exit 0
 else
     echo "Runtime failed for unknown reason"
     echo "RESULT:  $NAME run failed."
+    exit 1
 fi
