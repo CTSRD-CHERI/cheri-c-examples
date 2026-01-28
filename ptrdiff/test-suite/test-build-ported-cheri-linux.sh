@@ -1,14 +1,15 @@
-set -o pipefail
+#!/usr/bin/env bash
+
+set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-cherilinux"
+NAME="$EXAMPLE-ported-cheri-linux"
 
 cd ../ported-cheri-linux/
 
-make clean
-
-# Run make and determine whether build was successful or not.
-if make | tee /dev/tty ; then 
+if make clean; make | tee /dev/tty ; then 
     echo "RESULT:  $NAME build success." 
+    exit 0
 else
     echo "RESULT:  $NAME build failed."
+    exit 1
 fi
