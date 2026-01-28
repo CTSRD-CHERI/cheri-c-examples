@@ -1,8 +1,10 @@
-set -o pipefail
-EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-x86"
+#!/usr/bin/env bash
 
-cd ../baseline-x86/
+set -e -o pipefail
+EXAMPLE=$(basename $(cd ../ && pwd))
+NAME="$EXAMPLE-baseline-x86-linux"
+
+cd ../baseline-x86-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE)
 
