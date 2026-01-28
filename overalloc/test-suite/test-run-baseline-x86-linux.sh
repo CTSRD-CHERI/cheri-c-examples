@@ -33,7 +33,9 @@ if [[ "${MEM_MATCHES[0]//[[:space:]]/}" == "${MEM_MATCHES[2]//[[:space:]]/}" ]];
     # These should be the same.
     echo "p1 and p2 addresses are equal.  They both point to ${MEM_MATCHES[0]}"
     echo "RESULT:  $NAME run success."
+    exit 0
 else
     # Any other result is a failed test.
     echo "RESULT:  $NAME run failed."
+    exit 1
 fi

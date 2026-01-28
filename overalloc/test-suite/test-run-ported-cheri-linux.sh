@@ -26,7 +26,7 @@ echo "$RUN_RESULTS"
 if (( status == 0 )); then
     echo "Program ran without triggering CHERI security exception (failed test)."
     echo "RESULT:  $NAME run failed."
-    exit $status
+    exit 1
 elif (( status == 139 )); then
     echo "CHERI security exception successfully triggered (results in segmentation fault)."
     echo "RESULT:  $NAME run success."

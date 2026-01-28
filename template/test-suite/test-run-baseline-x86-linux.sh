@@ -19,7 +19,9 @@ fi
 if [[ SUCCESS_CONDITION]]; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
+    exit 0
 else
     # Any other result is a failed test.
     echo "RESULT:  $NAME run failed."
+    exit 1
 fi
