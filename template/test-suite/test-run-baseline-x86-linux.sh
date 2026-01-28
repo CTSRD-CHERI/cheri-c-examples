@@ -1,6 +1,8 @@
-set -o pipefail
+#!/usr/bin/env bash
+
+set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-x86"
+NAME="$EXAMPLE-baseline-x86-linux"
 
 cd ../baseline-x86/
 
