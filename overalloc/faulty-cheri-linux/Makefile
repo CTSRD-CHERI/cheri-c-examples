@@ -2,7 +2,8 @@ CC = clang
 CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
 TARGET = aarch64-linux-musl_purecap
 MUSL_HOME = /morello/musl
-CFLAGS = ''
+#CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive -Wno-int-conversion  -march=morello+c64 -mabi=purecap
+CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive -Wno-int-conversion  -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib -fuse-ld=lld -static --sysroot $(MUSL_HOME) -v
 CFLAGSNA = -g -Wcheri-provenance -march=morello+c64 -mabi=purecap
 APP = overalloc 
 BUILD_DIR = build
