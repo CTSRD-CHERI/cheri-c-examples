@@ -1,6 +1,6 @@
 #test:  ptrdiff3 
 
-#purpose:  show how compiler gets confused as to which is offset and which is base
+#purpose:  show how to use ptrdiff to tell compiler which is offset and which is base
 
 #to build:
 make 
@@ -10,9 +10,8 @@ make
 
 #expected result:
 ./build/ptrdiff3
- ptrdiff3:  returning the addrtess of buf[offset] = 0x130e8a
-In-address space security exception (core dumped)
-
+ ptrdiff3:  returning the addrtess of buf[offset] = 0x130e6a
+b2= 0x130e6a,  mybuf=0x130e60 a
 
 
 
