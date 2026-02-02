@@ -10,8 +10,9 @@ make
 ./build/ptrbitflags
 
 #expected result:
-test1: use 0 bits of pointer for some kind of flag, use uint64_t to cast
-In-address space security exception (core dumped)
+ctest1: use 0 bits of pointer for some kind of flag, use uintptr_t instead of uint64_t to cast
+ .. val = 10.000000
+
 
 
 
