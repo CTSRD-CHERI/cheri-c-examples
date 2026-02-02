@@ -8,20 +8,19 @@ cd ../baseline-x86-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 
-echo "$RUN_RESULTS"
-
 status=${PIPESTATUS[0]}
 if (( status != 0 )); then
     echo "RESULT:  $NAME run failed."
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
-    # Test succeeded
+echo "$RUN_RESULTS"
+
+# First and fourth elements should match(strip whitespace).  
+if grep -E "p=.+ *p=.+ base=.+ newoff=.+" <<< "$RUN_RESULTS" ; then
     echo "RESULT:  $NAME run success."
-    exit 0
-else
-    # Any other result is a failed test.
-    echo "RESULT:  $NAME run failed."
-    exit 1
+        exit 0
+    else    
+        echo "RESULT:  $NAME run failed."
+        exit 1
 fi
