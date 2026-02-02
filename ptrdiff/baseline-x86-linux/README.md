@@ -1,6 +1,7 @@
 #test:  ptrdiff 
 
-#purpose:  show how using the difference of two separate arrays a and b doesn't allow the reverse to work with cheri
+#purpose:  show how to use a wrapping structure so that having the  difference of two separate arrays a and b allows
+ the reverse to work with cheri
 
 #to build:
 make 
@@ -10,8 +11,9 @@ make
 
 #expected result:
 ./build/ptrdiff
- ptrdiff: returning diff of a1 from &a0[0]= 5
-In-address space security exception (core dumped)
+ ptrdiff: returning diff of a[] from &a0[0]= 4
+ .. ptrdiff, array[0] = 0
+
 
 
 
