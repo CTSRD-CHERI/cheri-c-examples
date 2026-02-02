@@ -1,6 +1,6 @@
 #test:  ptrbitflags  
 
-#purpose:  show fix for issue if low bits of ptrs are used as flags (build w/ -cheri-bounds=aggressive)
+#purpose:  show issue if low bits of ptrs are used as flags (build w/ -cheri-bounds=aggressive)
 
 
 #to build:
