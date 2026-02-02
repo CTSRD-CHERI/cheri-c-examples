@@ -16,7 +16,7 @@ fi
 
 echo "$RUN_RESULTS"
 
-# First and fourth elements should match(strip whitespace).  
+# Should run to completion and print applicable memory addresses
 if grep -E "p=.+ *p=.+ base=.+ newoff=.+" <<< "$RUN_RESULTS" ; then
     echo "RESULT:  $NAME run success."
         exit 0

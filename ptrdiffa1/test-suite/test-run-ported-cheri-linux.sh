@@ -16,12 +16,11 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
-    # Test succeeded
+# Should run to completion and print applicable memory addresses
+if grep -E "p=.+ *p=.+ base=.+ newoff=.+" <<< "$RUN_RESULTS" ; then
     echo "RESULT:  $NAME run success."
-    exit 0
-else
-    # Any other result is a failed test.
-    echo "RESULT:  $NAME run failed."
-    exit 1
+        exit 0
+    else    
+        echo "RESULT:  $NAME run failed."
+        exit 1
 fi
