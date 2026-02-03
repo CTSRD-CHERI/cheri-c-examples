@@ -4,7 +4,7 @@ set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
 NAME="$EXAMPLE-baseline-x86-linux"
 
-cd ../baseline-x86/
+cd ../baseline-x86-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 
@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Fq "ptrdiff2, array[0] = 8" <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
