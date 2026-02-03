@@ -1,6 +1,6 @@
 #test:  bndschk 
 
-#purpose:  show how cheri protects a library function from bogus buffer/length input
+#purpose:  show how cheri intrinsics can  protect a library function from bogus buffer/length input
 
 #to build:
 make 
@@ -10,9 +10,8 @@ make
 
 #expected result:
 ./build/bndschk
-about to do memset of 0xfffffff7ff58 with len 10
-In-address space security exception (core dumped)
-
+about to do memset of 0xfffffff7ff68 with len 10
+.. after call to ctest1, res = 1
 
 
 
