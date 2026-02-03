@@ -1,9 +1,5 @@
 #test:  readplus1 
 
-#purpose: show how  "do  ... while " loop can cause fault in cheri although 
-# there really isn't a problem
-# (inspired by cheribsd: contrib/jemalloc/include/jemalloc/internal/bitmap.h)
-
 #to build:
 make 
 
@@ -14,7 +10,7 @@ make
 ./build/readplus1
 
 readplus1: adding up 8 elements in array
-In-address space security exception (core dumped)
+ .. readplus1, res = 36
 
 
 
