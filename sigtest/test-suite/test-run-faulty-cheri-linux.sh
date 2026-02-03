@@ -4,24 +4,6 @@ set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
 NAME="$EXAMPLE-faulty-cheri-linux"
 
-cd ../faulty-cheri-linux/
-
-RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
-
-echo "$RUN_RESULTS"
-
-status=${PIPESTATUS[0]}
-if (( status != 0 )); then
-    echo "RESULT:  $NAME run failed."
-    exit $status
-fi
-
-if [[ SUCCESS_CONDITION]]; then
-    # Test succeeded
-    echo "RESULT:  $NAME run success."
-    exit 0
-else
-    # Any other result is a failed test.
-    echo "RESULT:  $NAME run failed."
-    exit 1
-fi
+echo "This script shouldn't ever run since the faulty cheri linux version shouldn't build."
+echo "RESULT:  $NAME run failed."
+exit 1
