@@ -11,7 +11,7 @@ make
 
 #expected result:
 ctest1: cap copy  
-In-address space security exception (core dumped)
+ctest1: ctest1
 
 
 
