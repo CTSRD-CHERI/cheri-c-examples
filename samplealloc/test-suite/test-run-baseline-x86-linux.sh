@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Eq "0x[0-9A-Fa-f]+ 0x[0-9A-Fa-f]+ 1234" <<< "$RUN_RESULTS"; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0

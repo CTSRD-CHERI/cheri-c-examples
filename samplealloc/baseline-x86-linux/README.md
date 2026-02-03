@@ -1,8 +1,5 @@
 #test:  samplealloc
 
-#purpose:  show simple allocator, and how it does not give full cheri protection to individual allocated blobs
-
-
 #to build:
 make 
 
