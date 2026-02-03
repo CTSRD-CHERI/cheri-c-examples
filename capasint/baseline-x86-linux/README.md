@@ -10,8 +10,8 @@ make
 ./build/capasint
 
 #expected result:
-test1: cap saved as integer
-In-address space security exception (core dumped)
+ctest1: cap saved as uintptr_t:  
+ .. capasint, array[0] = 99
 
 
 
