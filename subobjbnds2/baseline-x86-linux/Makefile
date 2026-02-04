@@ -1,14 +1,13 @@
 CC = clang
 MUSL_HOME?=/morello/musl
 TARGET = aarch64-linux-musl_purecap
-#CFLAGS = -march=morello -mabi=aapcs -O0 -Wall -g -I.
-CFLAGS = -march=morello -mabi=purecap -cheri-bounds=aggressive --target=$(TARGET) -O0 -Wall -g -I.  --sysroot $(MUSL_HOME) -v
+CFLAGS = ''
 
 CC1 ?= /usr/local64/llvm-morello-csa/bin/clang-14
 CFLAGSNA ?= -g -Wcheri-provenance -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
 APP ?= subobjbnds2 
 BUILD_DIR = build
-LDFLAGS = -fuse-ld=lld -static  -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib  
+LDFLAGS = ''
 
 $(APP):  src/main.c
 	mkdir -p $(BUILD_DIR)
