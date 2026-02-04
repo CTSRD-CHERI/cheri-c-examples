@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Fq "count = 100" <<< "$RUN_RESULTS" && grep -Fq "100 101" <<< "$RUN_RESULTS"; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
