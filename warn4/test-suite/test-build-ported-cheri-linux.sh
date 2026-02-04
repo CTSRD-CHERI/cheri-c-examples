@@ -11,7 +11,7 @@ status=$?
 
 echo "$BUILD_RESULTS"
 
-# Build should succeed but generate warning
+# Build should succeed and not generate warning
 if (( status == 0 )); then
     if ! grep -Fq "warning: expression which evaluates to zero treated as a null pointer constant" <<< "$BUILD_RESULTS" ; then
         echo "Build did not generate warning from faulty cheri example."
