@@ -19,7 +19,6 @@ extern int printf(const char *, ...);
 
 #include <stdlib.h>
 #include <stddef.h>
-#include <cheri.h>
 #include <stdio.h>
 #include <stdint.h>
 

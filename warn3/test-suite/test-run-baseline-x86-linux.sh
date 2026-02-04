@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Eq "buf\[offset\] = 0x[0-9A-Fa-f]+" <<< "$RUN_RESULTS"  && grep -Eq "b2= 0x[0-9A-Fa-f]+,  mybuf=0x[0-9A-Fa-f]+ a" <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
