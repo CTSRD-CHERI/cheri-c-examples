@@ -8,14 +8,14 @@
 
 //cap_over_mq
 
-char msg[16][80];
+char msg[10][80];
 char* msg1;
 int main() {
     mqd_t mq;
     struct mq_attr attr;
 
     attr.mq_flags = 0;
-    attr.mq_maxmsg = 16;
+    attr.mq_maxmsg = 10;
     attr.mq_msgsize = 16;
     attr.mq_curmsgs = 0;
 
@@ -27,7 +27,7 @@ int main() {
 
     printf("Message queue opened/created successfully\n");
     int i;
-    for(i=0;i<16;i++) 
+    for(i=0;i<10;i++) 
     {
 
     printf("Message queue  msg %d sent successfully\n",i);
