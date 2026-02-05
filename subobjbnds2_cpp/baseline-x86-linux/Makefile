@@ -1,12 +1,12 @@
-CC = clang
-CCX = clang++
-CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
-CC1X = /usr/local64/llvm-morello-csa/bin/clang-14++
-CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive   -march=morello+c64 -mabi=purecap
-CFLAGSXX = -g -Wcheri-provenance -cheri-bounds=aggressive  -march=morello+c64 -mabi=purecap
-CFLAGSNA = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap
-CFLAGSNAXX = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap
-APP = subobjbds2_cpp
+CC = gcc
+CCX = g++
+TARGET = x86_64-linux-gnu
+CFLAGS = -O0 -Wall -g -I.
+CFLAGSXX = -O0 -Wall -g -I. -std=c++11
+
+CC1 ?= g++
+CFLAGSNA ?= -g -Wall
+APP = subobjbnds2_cpp
 BUILD_DIR = build
 
 $(APP):  src/main.cpp

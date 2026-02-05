@@ -2,9 +2,9 @@
 
 set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-baseline-x86-linux"
+NAME="$EXAMPLE-faulty-cheri-linux"
 
-cd ../baseline-x86-linux/
+cd ../faulty-cheri-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 
@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if grep -Fq "capasint, array[0] = 99" <<< "$RUN_RESULTS" ; then
+if [[ SUCCESS_CONDITION]]; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0

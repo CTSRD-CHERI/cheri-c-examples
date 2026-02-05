@@ -16,7 +16,8 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if grep -Fq "capasint, array[0] = 99" <<< "$RUN_RESULTS" ; then
+# Count the number fo values equal to 0 and confirm it's the expected amount.
+if [[ $(grep -Ec "val [0-9]+ = 0" <<< "$RUN_RESULTS") == 25 ]] ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
