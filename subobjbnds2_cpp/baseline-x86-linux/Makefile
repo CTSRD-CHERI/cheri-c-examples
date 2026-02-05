@@ -6,7 +6,7 @@ CFLAGSXX = -O0 -Wall -g -I. -std=c++11
 
 CC1 ?= g++
 CFLAGSNA ?= -g -Wall
-APP = subobjbds2_cpp
+APP = subobjbnds2_cpp
 BUILD_DIR = build
 
 $(APP):  src/main.cpp
