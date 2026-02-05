@@ -1,16 +1,14 @@
-CC = clang
-CCX = clang++
-MUSL_HOME ?= /morello/musl
-TARGET = aarch64-linux-musl_purecap
-#CFLAGS = -march=morello -mabi=aapcs -O0 -Wall -g -I.
-CFLAGS = -march=morello -mabi=purecap --target=$(TARGET) -O0 -Wall -g -I.  --sysroot $(MUSL_HOME) -v
-CFLAGSXX = -march=morello -mabi=purecap --target=$(TARGET) -O0 -Wall -g -I.  --sysroot $(MUSL_HOME) -v
+CC = gcc
+CCX = g++
+TARGET = x86_64-linux-gnu
+CFLAGS = -O0 -Wall -g -I.
+CFLAGSXX = -O0 -Wall -g -I. -std=c++11
 
-CC1 ?= /usr/local64/llvm-morello-csa/bin/clang-14++
-CFLAGSNA ?= -g -Wcheri-provenance -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
+CC1 ?= g++
+CFLAGSNA ?= -g -Wall
 APP ?= arduprob
 BUILD_DIR = build
-LDFLAGS = -fuse-ld=lld -static  --sysroot $(MUSL_HOME) -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib -lunwind -lc++abi -lc++  
+LDFLAGS = 
 
 $(APP):  src/main.cpp
 	mkdir -p $(BUILD_DIR)
