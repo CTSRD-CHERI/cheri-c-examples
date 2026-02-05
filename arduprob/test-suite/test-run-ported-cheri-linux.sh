@@ -16,10 +16,11 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
-    # Test succeeded
-    echo "RESULT:  $NAME run success."
-    exit 0
+# Check for first and last lines of output
+if grep -Fq "base=" <<< "$RUN_RESULTS" && grep -Fq "param_b1 addr" <<< "$RUN_RESULTS"; then
+        # Test succeeded
+        echo "RESULT:  $NAME run success."
+        exit 0
 else
     # Any other result is a failed test.
     echo "RESULT:  $NAME run failed."
