@@ -16,7 +16,9 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+REGEXP="[0-9A-Fa-f]+"
+
+if grep -Eq "[0-9]+ [0-9]+ 0x$REGEXP  0x$REGEXP  0x$REGEXP" <<< "$RUN_RESULTS"; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
