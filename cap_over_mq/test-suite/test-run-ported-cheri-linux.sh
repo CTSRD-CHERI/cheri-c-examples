@@ -16,7 +16,8 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if [[ $(grep -Ec "Message queue  msg [0-9]+ sent successfully" <<< "$RUN_RESULTS") == 10 ]] ; then
+    # Test succeeded
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
