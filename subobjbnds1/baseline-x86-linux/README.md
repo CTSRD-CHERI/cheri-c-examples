@@ -1,8 +1,5 @@
 #test:  subobjbds1  
 
-#purpose:  show subobj bounds cheri failure (build w/ -cheri-bounds=aggressive)
-
-
 #to build:
 make 
 
@@ -10,8 +7,8 @@ make
 ./build/subobjbds1
 
 #expected result
-test1: subobject bounds:  
-In-address space security exception (core dumped)
+ctest1: subobject bounds:  
+ .. ctest1, count = 10
 
 
 
