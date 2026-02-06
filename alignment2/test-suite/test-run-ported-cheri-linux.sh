@@ -16,7 +16,8 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+if grep -Eq "ctest1, v=0x[0-9A-Fa-f]+ &blah = 0x[0-9A-Fa-f]+ Passes" <<< "$RUN_RESULTS" ; then
+#if grep -E "v=.+ &a=.+ a=10" <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
