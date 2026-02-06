@@ -10,7 +10,7 @@ CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive   -march=morello+c64 -ma
 CFLAGSXX = -g -Wcheri-provenance -cheri-bounds=aggressive  -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
 CFLAGSNA = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
 CFLAGSNAXX = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
-APP = subobjbds2_cpp
+APP = subobjbnds2_cpp
 BUILD_DIR = build
 LDFLAGS = -fuse-ld=lld -static  -march=morello -mabi=purecap --target=$(TARGET) -rtlib=compiler-rt -L$(MUSL_HOME)/lib  
 
