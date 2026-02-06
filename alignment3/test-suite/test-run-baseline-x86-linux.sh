@@ -16,7 +16,10 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if [[ SUCCESS_CONDITION]]; then
+HEX_REGEX="[0-9A-Fa-f]+"
+
+if grep -Eq "ctest1: alignment cap memcpy.+([0-9]+)" <<< "$RUN_RESULTS"  && grep -Eq "cap  = $HEX_REGEX  val=hello world" <<< "$RUN_RESULTS" ; then
+
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
