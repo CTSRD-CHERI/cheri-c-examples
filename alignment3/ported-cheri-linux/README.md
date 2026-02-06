@@ -17,7 +17,7 @@ clang-14: warning: Using c64 in the arch string is deprecated. The CPU mode shou
 
 runtime:
 test1: alignment cap memcpy? (16)
- .. cap  = 0
+ .. cap  = 236e90  val=hello world
 
 
 
