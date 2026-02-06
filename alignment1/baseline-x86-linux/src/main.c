@@ -45,5 +45,5 @@ int main(int argc, char * argv[])
 {
 long test_to_run=0x1;
 char **p = (char **) ctest1();
-printf("  ..ctest1: return str= %s.. passes?? - Not expected \n",*p);
+printf("  ..ctest1: return str= %s.. passes.\n",*p);
 }

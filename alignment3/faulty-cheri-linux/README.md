@@ -25,7 +25,7 @@ intptr_t cap;
 
 runtime:
 test1: alignment cap memcpy? (16)
- .. cap  = 0
+ .. segmentation fault
 
 
 

@@ -20,8 +20,8 @@ src/main.c:25:8: note: Original allocation of type 'char[100]' has an alignment 
   char f[N]; /* Warn: Original allocation of type 'char [100]' which has an alignment requirement 1 bytes */
 
 runtime:
-ctest1: alignment?  Warning
-  ..ctest1: return str= ctest 1.. passes?? - expected to pass but might be issue in future
+ctest1: alignment?  offset to f in S is 792 &s=0x2370a0
+Bus error
 
 
 

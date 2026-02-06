@@ -11,7 +11,8 @@ make
 ./build/alignment1
 
 #expected result:
- **not working yet**
+ ctest1: alignment?  offset to f in S is 800 &s=0x2370a0
+  ..ctest1: return str= ctest 1 string.. All aligned 
 
 
 
