@@ -25,8 +25,7 @@ src/main.c:41:1: warning: Address of stack memory associated with local variable
 
 
 runtime:
+./build/alignment2 
 ctest1: pointer-casts requires proper alignment  
- .. ctest1, &blah = 0xfffffff7fb30 Passes?? Expected to pass but might be issue in future
-
-
+Bus error (core dumped)
 
