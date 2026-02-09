@@ -13,13 +13,13 @@ The idea is to create a structured set of sample projects where each â€œexampleâ
    - This is an example of a 'naive' attempt at porting to CHERI Linux, but one or more errors are introduced.
    - Faulty behavior can be a broken build, runtime error (often by triggering a CHERI security exception), or improper use of CHERI feature.
 
-2. **Ported (Compliant) CHERI Linux**  
+3. **Ported (Compliant) CHERI Linux**  
    - None of this repo will be shown to an LLM.
    - This will be our ground truth.
    - Scripts should include inline comments indicating what patches were applied & why.
    - Readme should emphasize improvements & original pitfalls For human evaluators.
 
-3. **Test Suite**  
+4. **Test Suite**  
 - This contains a simple set of tests to check for success or failure of the build and run for each example.
 - Each shell script will test the build or run of a single example on a single platform.
 - (ex.:  test-build-ported-cheri-linux.sh tests the build for the ported example on CHERI Linux).
