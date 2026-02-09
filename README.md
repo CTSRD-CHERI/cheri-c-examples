@@ -2,25 +2,29 @@
 Collection of CHERI C code examples, to be used in tests, documentation, etc.
 
 # Overview
-The idea is to create a structured set of sample projects where each “example” consists of two parts:
+The idea is to create a structured set of sample projects where each “example” consists of three parts:
 
-1. **Baseline (Non-Compliant) Repository**  
-    - This repo should be fully available to an LLM.
-    - Readme should be written as standard functionality overview & build instructions.
+1. **Baseline (Non-Compliant) x86 example**  
+    - These should be fully available to an LLM.
+    - Readmes should be written as standard functionality overview & build instructions.
 
-2. **Ported (Compliant) Repository**  
+2. **Faulty (broken) CHERI Linux example**
+   - These should be fully available to an LLM.
+   - This is an example of a 'naive' attempt at porting to CHERI Linux, but one or more errors are introduced.
+   - Faulty behavior can be a broken build, runtime error (often by triggering a CHERI security exception), or improper use of CHERI feature.
+
+2. **Ported (Compliant) CHERI Linux**  
    - None of this repo will be shown to an LLM.
    - This will be our ground truth.
    - Scripts should include inline comments indicating what patches were applied & why.
    - Readme should emphasize improvements & original pitfalls For human evaluators.
 
 3. **Test Suite**  
-- This contains a simple set of tests to check for success or failure of the build and run.
+- This contains a simple set of tests to check for success or failure of the build and run for each example.
 - Each shell script will test the build or run of a single example on a single platform.
-- (ex.:  test-build-cheri-linux.sh tests the build for the example on CHERI Linux).
-- The script test-all-[platform].sh will run the build and test scripts for a platform and save them in a results folder in the test-suite directory.
+- (ex.:  test-build-ported-cheri-linux.sh tests the build for the ported example on CHERI Linux).
+- The script test-all-[platform].sh will run the build and test scripts for a platform and save them in a local results folder in the test-suite directory.
 - See 'testing' section below
-
 
 Since the baseline and ported are for specific architectures, the architecture name is depicted after "baseline"
 or "ported".  i.e. "baseline-x86", "ported-cheri-linux", etc. (see example below)
@@ -29,33 +33,42 @@ or "ported".  i.e. "baseline-x86", "ported-cheri-linux", etc. (see example below
 ```
 example1/
 ├── baseline-x86/          # Baseline Code (Full repo should be available to LLM)
-├── ported-morello-arm-purecap/            # Ground Truth Port (Not shown to LLM)
+├── faulty-cheri-linux/          # Incorrect/naive port to CHERI Linux (doesn't work as intended)
+├── ported-morello-arm-purecap/            # In progress
 ├── ported-cheri-linux/                    # Ground Truth Port (Not shown to LLM)
 └── test-suite/                # Platform-specific tests for building an running
 ...
 ```
 
+Subfolder and file structures for a generic example
 ```
-example1/
+example/
 ├── baseline-x86/
 │   ├── src/
 │   │   ├── main.c
-│   │   └── helper.c
 │   ├── README.md               # Overview, build instructions (LLM can view this - standard README)
 │   └── Makefile
-├── ported-morello-arm-purecap/
+├── faulty-cheri-linux/
+│   ├── src/                    
+│   │   ├── main.c              
+│   ├── README.md               # Overview, build instructions (LLM can view this - standard README)
+│   └── Makefile
+├── ported-cheri-linux/
 │   ├── src/                    # Should have inline comments (what was changed & why?)
 │   │   ├── main.c              # Include comments from annotation json for later human readable annotation.
-│   │   └── helper.c 
-│   ├── build/                  # Include Binary
 │   ├── README.md               # (additional named section for what was changed & why) Emphasize improvements.
-├── test-suite/
-│   ├── test-all-cheri-linux.sh
-│   ├── test-all-x86.sh
-│   ├── test-build-cheri-linux.sh
-│   ├── test-build-x86.sh
-│   ├── test-run-cheri-linux.sh
-│   ├── test-run-x86.sh
+│   └── Makefile
+├── ported-morello-arm-purecap/ # In progress
+├── test-suite/                 # Contains test for each platform/instance.
+│   ├── test-all-baseline-x86-linux.sh
+│   ├── test-all-faulty-cheri-linux.sh
+│   ├── test-all-ported-cheri-linux.sh
+│   ├── test-build-baseline-x86-linux.sh
+│   ├── test-build-faulty-cheri-linux.sh
+│   ├── test-build-ported-cheri-linux.sh
+│   ├── test-run-baseline-x86-linux.sh
+│   ├── test-run-faulty-cheri-linux.sh
+│   ├── test-run-ported-cheri-linux.sh
 ...
 ```
 # Testing
@@ -66,7 +79,7 @@ To test, navigate to the 'test-suite' folder in an example.
 ```
 ./test-build-[platform].sh
 ```
-Results will be printed to the command line.
+Results will be printed to the command line.  Exit code '0' is a passed test; exit code '1' is a failed test.
 
 ### To test run
 (build first, then)
@@ -75,7 +88,7 @@ Results will be printed to the command line.
 ./test-run-[platform].sh
 ```
 
-Results will be printed to the command line.
+Results will be printed to the command line.  Exit code '0' is a passed test; exit code '1' is a failed test.
 
 ### To build and test and save results to a log file:
 ```
@@ -97,5 +110,5 @@ test-[Example]-[Platform].log
 Example folder name and file name:  
 
 ```
-/test-suite/results/2026-01-26-184519-overalloc-cherilinux-cherilinux0/test-overalloc-cherilinux.log
+/test-suite/results/2026-01-26-184519-overalloc-ported-cheri-linux-cherilinux0/test-overalloc-cherilinux.log
 ```
