@@ -8,8 +8,7 @@ cd ../faulty-cheri-bsd/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 status=$?
-#echo "$status"
-
+echo "$status"
 
 echo "$RUN_RESULTS"
 
@@ -18,7 +17,7 @@ if [ "$status" -eq 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit 1
 elif [ "$status" -eq 162 ]; then
-    echo "CHERI security exception triggered (results in seg fault - expected behavior)."
+    echo "CHERI security exception triggered (results in core dump - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else
