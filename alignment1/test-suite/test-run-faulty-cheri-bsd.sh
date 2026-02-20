@@ -16,7 +16,7 @@ if [ "$status" -eq 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit 1
 elif [ "$status" -eq 138 ]; then
-    echo "CHERI security exception triggered (results in bus error - expected behavior)."
+    echo "CHERI security exception triggered (results in bus error 138 - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else

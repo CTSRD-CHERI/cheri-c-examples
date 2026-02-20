@@ -17,7 +17,7 @@ if [ "$status" -eq 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit 1
 elif [ "$status" -eq 162 ]; then
-    echo "CHERI security exception triggered (results in core dump - expected behavior)."
+    echo "CHERI security exception triggered (results in signal error 162 - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else

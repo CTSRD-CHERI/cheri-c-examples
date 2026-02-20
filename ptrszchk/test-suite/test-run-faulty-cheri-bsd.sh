@@ -16,7 +16,7 @@ if [ "$status" -eq 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit 1
 elif [ "$status" -eq 134 ]; then
-    echo "CHERI security exception triggered (results in abort trap core dump - expected behavior)."
+    echo "CHERI security exception triggered (results in signal abort trap - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else
