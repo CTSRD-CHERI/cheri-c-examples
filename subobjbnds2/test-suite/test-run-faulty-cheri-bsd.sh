@@ -15,7 +15,7 @@ if [ "$status" -eq 0 ]; then
     echo "Program ran successfully (should crash)."
     echo "RESULT:  $NAME run failed."
     exit 1
-elif [ "$status" -eq 127 ]; then
+elif [ "$status" -eq 162 ]; then
     echo "CHERI security exception triggered (results in core dump - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
