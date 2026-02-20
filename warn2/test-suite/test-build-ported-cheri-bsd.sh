@@ -1,19 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-ported-cheri-linux"
+NAME="$EXAMPLE-ported-cheri-bsd"
 
-cd ../ported-cheri-linux/
+cd ../ported-cheri-bsd/
 
-BUILD_RESULTS=$( { ./make clean; make; } 2>&1)
+BUILD_RESULTS=$( { make clean; make; } 2>&1)
 status=$?
 
 echo "$BUILD_RESULTS"
 
 # Build should succeed and generate no integer to ptr cast warning
-if (( status == 0 )); then
-    if ! grep -Fq "warning: comparison between pointer and integer" <<< "$BUILD_RESULTS" ; then
+if [ "$status" -eq 0 ]; then
+    if ! printf '%s\n' "$BUILD_RESULTS" | grep -Fq "warning: comparison between pointer and integer" ; then
         echo "Build did not generate pointer interger comparison warning."
         echo "RESULT:  $NAME build test succeeded."
         exit 0
