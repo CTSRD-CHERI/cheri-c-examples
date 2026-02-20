@@ -6,7 +6,7 @@ CFLAGS = -g -Wcheri-provenance -cheri-bounds=aggressive   -march=morello+c64 -ma
 CFLAGSXX = -g -Wcheri-provenance -cheri-bounds=aggressive  -march=morello+c64 -mabi=purecap
 CFLAGSNA = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap
 CFLAGSNAXX = -g -Wcheri-provenance -cheri-bounds=aggressive -march=morello+c64 -mabi=purecap
-APP = subobjbds2_cpp
+APP = subobjbnds2_cpp
 BUILD_DIR = build
 
 $(APP):  src/main.cpp
