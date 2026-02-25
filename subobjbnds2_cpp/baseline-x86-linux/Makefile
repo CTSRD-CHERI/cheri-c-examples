@@ -6,7 +6,7 @@ CFLAGSXX = -O0 -Wall -g -I. -std=c++11
 
 CC1 ?= clang++
 CFLAGSNA ?= -g -Wall
-APP ?= subobjbds2_cpp
+APP ?= subobjbnds2_cpp
 BUILD_DIR = build
 GCC_LIB_DIR = $(firstword $(wildcard /usr/lib/gcc/x86_64-linux-gnu/*))
 LDFLAGS = $(if $(GCC_LIB_DIR),-L$(GCC_LIB_DIR))
