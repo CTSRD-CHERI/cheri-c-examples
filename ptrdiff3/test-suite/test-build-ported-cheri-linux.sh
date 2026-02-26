@@ -6,7 +6,7 @@ NAME="$EXAMPLE-ported-cheri-linux"
 
 cd ../ported-cheri-linux/
 
-if make clean; make | tee /dev/tty ; then 
+if make clean; make | tee -a /dev/tty ; then 
     echo "RESULT:  $NAME build success." 
     exit 0
 else

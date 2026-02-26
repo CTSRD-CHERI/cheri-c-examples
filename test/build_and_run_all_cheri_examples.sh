@@ -35,7 +35,7 @@ FAIL=0
 SKIP=0
 BUILD_FAIL=0
 
-echo "===== CHERI C Examples Test Run =====" | tee "$LOGFILE"
+echo "===== CHERI C Examples Test Run =====" | tee -a "$LOGFILE"
 echo "Date: $(date)" | tee -a "$LOGFILE"
 echo "Variant: $VARIANT" | tee -a "$LOGFILE"
 echo "======================================" | tee -a "$LOGFILE"

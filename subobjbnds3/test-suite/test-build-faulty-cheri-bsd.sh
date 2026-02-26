@@ -6,7 +6,7 @@ NAME="$EXAMPLE-faulty-cheri-bsd"
 
 cd ../faulty-cheri-bsd/
 
-if make clean; make | tee /dev/tty ; then 
+if make clean; make | tee -a /dev/tty ; then 
     echo "RESULT:  $NAME build success." 
     exit 0
 else

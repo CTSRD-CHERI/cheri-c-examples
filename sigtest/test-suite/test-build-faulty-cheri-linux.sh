@@ -24,15 +24,3 @@ else
     echo "RESULT:  $NAME build failed."
     exit 1
 fi
-
-
-
-
-
-if make clean; make | tee /dev/tty ; then 
-    echo "RESULT:  $NAME build success." 
-    exit 0
-else
-    echo "RESULT:  $NAME build failed."
-    exit 1
-fi
