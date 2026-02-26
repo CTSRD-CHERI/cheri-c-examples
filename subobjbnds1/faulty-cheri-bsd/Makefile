@@ -7,7 +7,7 @@ BUILD_DIR = build
 
 $(APP):  src/main.c
 	mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGSNA)  src/main.c -o $(BUILD_DIR)/$(APP)
+	$(CC) $(CFLAGS)  src/main.c -o $(BUILD_DIR)/$(APP)
 
 analyze:  src/main.c
 	mkdir -p $(BUILD_DIR)
