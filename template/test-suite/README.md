@@ -22,7 +22,3 @@ Make any changs to each "test-build-[platform].sh" script.  As long as the expec
 In each "test-run-[platform].sh" script, put in SUCCESS\_CONDITION for test to pass.
 
 Extra code and modification will be needed for some examples (such as if run is expected to fail, or intermediate code to make the success condition is needed).
-
-### **Update test-all scripts**
-
-For each "test-run-[platform].sh" script, no changes are needed.  These just create the results folder and call the other scripts above.
