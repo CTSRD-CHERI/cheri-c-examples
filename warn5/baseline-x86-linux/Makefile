@@ -1,13 +1,13 @@
 CC = clang
 MUSL_HOME?=/morello/musl
 TARGET = aarch64-linux-musl_purecap
-CFLAGS = ''
+CFLAGS =
 
 CC1 = $(CC) 
 CFLAGSNA ?= -g -Wcheri-provenance -march=morello+c64 -mabi=purecap --target=$(TARGET) --sysroot $(MUSL_HOME)
 APP = warn5 
 BUILD_DIR = build
-LDFLAGS = ''
+LDFLAGS =
 
 $(APP):  src/main.c
 	mkdir -p $(BUILD_DIR)
