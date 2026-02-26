@@ -21,7 +21,7 @@ void ** ctest1(void)
 {
 static double a[2048];
 printf("ctest1: pointer-casts requires proper alignment  \n");
-   void *p0 = (void*)&a[0];
+   void *p0 = (void*)&a[1];
   // Pointer p0 is aligned to a 8 byte boundary;
   // type 'void **' requires capability alignment (16 bytes)
   return (void**)p0;

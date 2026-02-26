@@ -15,8 +15,8 @@ if [ "$status" -eq 0 ]; then
     echo "Program ran successfully (should crash)."
     echo "RESULT:  $NAME run failed."
     exit 1
-elif [ "$status" -eq 138 ]; then
-    echo "CHERI security exception triggered (results in bus error 138 - expected behavior)."
+elif [ "$status" -eq 162 ]; then
+    echo "CHERI security exception triggered (results in  sigprot error 162 - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else
