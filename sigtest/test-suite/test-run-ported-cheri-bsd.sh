@@ -16,7 +16,7 @@ if [ "$status" -ne 0 ]; then
     exit $status
 fi
 
-if printf '%s\n' "$RUN_RESULTS" | grep -Fq "ctest1: return str= ctest 1 string.. All aligned" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Fq "Successfully recovered from the error!" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
