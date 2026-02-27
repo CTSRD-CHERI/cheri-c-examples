@@ -1,6 +1,6 @@
 CC = clang
 CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
-CFLAGS = ''
+CFLAGS =
 APP = subobjbnds1
 BUILD_DIR = build
 

@@ -2,7 +2,7 @@ CC = clang
 CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
 TARGET = aarch64-linux-musl_purecap
 MUSL_HOME = /morello/musl
-CFLAGS = ''
+CFLAGS =
 CFLAGSNA = -g -Wcheri-provenance -march=morello+c64 -mabi=purecap
 APP = alignment_ardu 
 BUILD_DIR = build
