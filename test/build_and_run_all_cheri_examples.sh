@@ -42,15 +42,18 @@ fi
 
 if [ "$#" -ge 2 ] ; then
     shift 2
+    SKIP_EXAMPLES="$@"
+else
+    SKIP_EXAMPLES=""
 fi
 
-SKIP_EXAMPLES="$@"
-
 echo "Running $LANGUAGE examples on $VARIANT.
-
-Skipping $SKIP_EXAMPLES
 "
 
+if [ -n "$SKIP_EXAMPLES" ] ; then
+    echo "Skipping $SKIP_EXAMPLES
+"
+fi
 
 # Make the results directory inside "test" if it doesn't exist already, and move up one directory.
 mkdir -p results
