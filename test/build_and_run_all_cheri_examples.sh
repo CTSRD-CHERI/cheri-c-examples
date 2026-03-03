@@ -138,6 +138,8 @@ else
 fi
 echo "" | tee -a "$LOGFILE"
 
+echo "Log saved to: $LOGFILE" | tee -a "$LOGFILE"
+
 if [ -n "$PASS_LIST" ] && [ -z "$FAIL_LIST" ] && [ -z "$BUILD_FAIL_LIST" ]; then
     echo "All tests passed, there were no build or run test fails." | tee -a "$LOGFILE"
     exit 0
@@ -145,5 +147,3 @@ else
     echo "At least one test failed." | tee -a "$LOGFILE"
     exit 1
 fi
-
-echo "Log saved to: $LOGFILE" | tee -a "$LOGFILE"
