@@ -6,7 +6,7 @@ NAME="$EXAMPLE-baseline-x86-linux"
 
 cd ../baseline-x86-linux/
 
-if make clean; make | tee /dev/tty ; then 
+if make clean && make 2>&1 | tee -a /dev/tty ; then 
     echo "RESULT:  $NAME build success." 
     exit 0
 else
