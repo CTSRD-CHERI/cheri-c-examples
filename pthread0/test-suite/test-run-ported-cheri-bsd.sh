@@ -11,12 +11,12 @@ status=$?
 
 echo "$RUN_RESULTS"
 
-if (( status != 0 )); then
+if [ "$status" -ne 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit $status
 fi
 
-if grep -Fq "... try 3.." <<< "$RUN_RESULTS" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Fq "... try 3.." ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
