@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
@@ -10,13 +10,12 @@ RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 status=$?
 
 echo "$RUN_RESULTS"
-#echo $status   
 
-if (( status == 0 )); then
+if [ "$status" -eq 0 ]; then
     echo "Program ran successfully (should crash)."
     echo "RESULT:  $NAME run failed."
     exit 1
-elif (( status == 162 )); then
+elif [ "$status" -eq 162 ]; then
     echo "CHERI security exception triggered (results in segmentation fault - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0

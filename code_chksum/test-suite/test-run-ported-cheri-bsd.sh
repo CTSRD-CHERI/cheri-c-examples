@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
@@ -7,16 +7,16 @@ NAME="$EXAMPLE-ported-cheri-bsd"
 cd ../ported-cheri-bsd/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
+status=$?
 
 echo "$RUN_RESULTS"
 
-status=${PIPESTATUS[0]}
-if (( status != 0 )); then
+if [ "$status" -ne 0 ]; then
     echo "RESULT:  $NAME run failed."
     exit $status
 fi
 
-if grep -Fq "sum = " <<< "$RUN_RESULTS" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Fq "sum = " ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0

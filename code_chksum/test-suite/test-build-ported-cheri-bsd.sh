@@ -2,9 +2,9 @@
 
 set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-faulty-cheri-bsd"
+NAME="$EXAMPLE-ported-cheri-bsd"
 
-cd ../faulty-cheri-bsd/
+cd ../ported-cheri-bsd/
 
 if make clean; make | tee /dev/tty ; then 
     echo "RESULT:  $NAME build success." 
