@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Check for variant in the command line
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 VARIANT"
+# Check for variants in the command line
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ] ; then
+    echo "Usage: $0 VARIANT LANGUAGE[optional]"
+    echo "Example: ./build_and_run_all_cheri_examples.sh baseline-x86-linux cpp"
     exit 1
 fi
 
@@ -19,6 +20,24 @@ if [ "$VARIANT" != "baseline-x86-linux" ] && [ "$VARIANT" != "faulty-cheri-bsd" 
     echo "ported-cheri-linux"
     exit 1
 fi
+
+LANGUAGE="$2"
+
+if [ -z "$LANGUAGE" ]; then
+    LANGUAGE="all"
+fi
+
+if [ "$LANGUAGE" != "c" ] && [ "$LANGUAGE" != "cpp" ] && [ "$LANGUAGE" != "all" ] ; then
+    echo "LANGGUAGEs:"
+    echo ""
+    echo "c"
+    echo "cpp"
+    echo "all (default)"
+    exit 1
+fi
+
+echo "Running $LANGUAGE examples on $VARIANT.
+"
 
 # Make the results directory inside "test" if it doesn't exist already, and move up one directory.
 mkdir -p results
@@ -53,6 +72,17 @@ for dir in */; do
         echo "" | tee -a "$LOGFILE"
         continue
     fi
+
+    # Skip non-LANGUAGE entries (from $LANGUAGE command line argument above)
+    if [ "$LANGUAGE" != "all" ] && [ ! -f "$dir/$VARIANT/src/main.$LANGUAGE" ]; then
+        echo "[$example] SKIPPED - no main.$LANGUAGE file found" | tee -a "$LOGFILE"
+        SKIP=$((SKIP + 1))
+        SKIP_LIST="${SKIP_LIST}${example}
+"
+        echo "" | tee -a "$LOGFILE"
+        continue
+    fi
+
 
     echo "========== $example ==========" | tee -a "$LOGFILE"
 
