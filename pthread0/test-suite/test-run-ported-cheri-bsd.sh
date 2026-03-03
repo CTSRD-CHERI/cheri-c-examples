@@ -7,10 +7,10 @@ NAME="$EXAMPLE-ported-cheri-bsd"
 cd ../ported-cheri-bsd/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
+status=$?
 
 echo "$RUN_RESULTS"
 
-status=${PIPESTATUS[0]}
 if (( status != 0 )); then
     echo "RESULT:  $NAME run failed."
     exit $status
