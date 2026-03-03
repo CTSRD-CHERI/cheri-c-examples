@@ -40,7 +40,9 @@ if [ "$LANGUAGE" != "c" ] && [ "$LANGUAGE" != "cpp" ] && [ "$LANGUAGE" != "all" 
     exit 1
 fi
 
-shift 2
+if [ "$#" -ge 2 ] ; then
+    shift 2
+fi
 
 SKIP_EXAMPLES="$@"
 
