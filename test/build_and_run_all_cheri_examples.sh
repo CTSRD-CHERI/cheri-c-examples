@@ -139,3 +139,11 @@ fi
 echo "" | tee -a "$LOGFILE"
 
 echo "Log saved to: $LOGFILE" | tee -a "$LOGFILE"
+
+if [ -n "$PASS_LIST" ] && [ -z "$FAIL_LIST" ] && [ -z "$BUILD_FAIL_LIST" ]; then
+    # Everything passed and there were no build or run tes fails.
+    exit 0
+else
+    # At least one test failed.
+    exit 1
+fi
