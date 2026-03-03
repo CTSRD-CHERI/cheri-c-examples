@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-ported-cheri-bsd"
+NAME="$EXAMPLE-ported-cheri-linux"
 
-cd ../ported-cheri-bsd/
+cd ../ported-cheri-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
-status=$?
 
 echo "$RUN_RESULTS"
 
-if [ "$status" -ne 0 ]; then
+status=${PIPESTATUS[0]}
+if (( status != 0 )); then
     echo "RESULT:  $NAME run failed."
     exit $status
 fi
 
-if printf '%s\n' "$RUN_RESULTS" | grep -Fq "Successfully recovered from the error!" ; then
+if grep -Fq "... try 3.." <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0

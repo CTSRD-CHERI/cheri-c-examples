@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -o pipefail
 EXAMPLE=$(basename $(cd ../ && pwd))
-NAME="$EXAMPLE-faulty-cheri-bsd"
+NAME="$EXAMPLE-faulty-cheri-linux"
 
-cd ../faulty-cheri-bsd/
+cd ../faulty-cheri-linux/
 
 RUN_RESULTS=$(./build/$EXAMPLE 2>&1)
 status=$?
 
 echo "$RUN_RESULTS"
 
-if [ "$status" -eq 0 ]; then
+if (( status == 0 )); then
     echo "Program ran successfully (should crash)."
     echo "RESULT:  $NAME run failed."
     exit 1
-elif [ "$status" -eq 162 ]; then
-    echo "CHERI security exception triggered (results in  sigprot error 162 - expected behavior)."
+elif (( status == 135 )); then
+    echo "ARM-Linux security exception triggered (results in bus fault - expected behavior)."
     echo "RESULT:  $NAME run success."
     exit 0
 else

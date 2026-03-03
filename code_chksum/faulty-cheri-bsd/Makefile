@@ -1,8 +1,8 @@
-CC = clang
+CC= clang
 CC1 = /usr/local64/llvm-morello-csa/bin/clang-14
 CFLAGS = -g -Wcheri-provenance  -Wno-int-conversion  -march=morello+c64 -mabi=purecap
 CFLAGSNA = -g -Wcheri-provenance -march=morello+c64 -mabi=purecap
-APP = code_chksum
+APP = code_chksum 
 BUILD_DIR = build
 
 $(APP):  src/main.c
