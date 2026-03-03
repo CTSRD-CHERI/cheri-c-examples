@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Check for variants in the command line
-if [ "$#" -lt 1 ] || [ "$#" -gt 2 ] ; then
-    echo "Usage: $0 VARIANT LANGUAGE[optional]"
-    echo "Example: ./build_and_run_all_cheri_examples.sh baseline-x86-linux cpp"
+# Process command line arguments
+if [ "$#" -lt 1 ] ; then
+    echo "Usage: $0 VARIANT LANGUAGE[optional] [examples to skip]"
+    echo "Example: ./build_and_run_all_cheri_examples.sh baseline-x86-linux cpp alignment1 alignment2"
     exit 1
 fi
 
@@ -11,6 +11,8 @@ VARIANT="$1"
 
 if [ "$VARIANT" != "baseline-x86-linux" ] && [ "$VARIANT" != "faulty-cheri-bsd" ] && \
     [ "$VARIANT" != "faulty-cheri-linux" ] && [ "$VARIANT" != "ported-cheri-bsd" ]  && [ "$VARIANT" != "ported-cheri-linux" ] ; then
+    echo "Invalid VARIANT.
+"
     echo "Supported VARIANTs:"
     echo ""
     echo "baseline-x86-linux"
@@ -28,6 +30,8 @@ if [ -z "$LANGUAGE" ]; then
 fi
 
 if [ "$LANGUAGE" != "c" ] && [ "$LANGUAGE" != "cpp" ] && [ "$LANGUAGE" != "all" ] ; then
+    echo "Invalid LANGUAGE selection
+"
     echo "LANGGUAGEs:"
     echo ""
     echo "c"
@@ -36,8 +40,15 @@ if [ "$LANGUAGE" != "c" ] && [ "$LANGUAGE" != "cpp" ] && [ "$LANGUAGE" != "all" 
     exit 1
 fi
 
+shift 2
+
+SKIP_EXAMPLES="$@"
+
 echo "Running $LANGUAGE examples on $VARIANT.
+
+Skipping $SKIP_EXAMPLES
 "
+
 
 # Make the results directory inside "test" if it doesn't exist already, and move up one directory.
 mkdir -p results
@@ -83,6 +94,22 @@ for dir in */; do
         continue
     fi
 
+    # Skip an example specified in the command line
+    SKIP_ME=0
+    for item in $SKIP_EXAMPLES; do
+        if [ "$example" = "$item" ]; then
+            SKIP_ME=1
+        fi
+    done
+
+    if [ "$SKIP_ME" -eq 1 ]; then
+        echo "[$example] SKIPPED - specified skip in command line" | tee -a "$LOGFILE"
+        SKIP=$((SKIP + 1))
+        SKIP_LIST="${SKIP_LIST}${example}
+"
+        echo "" | tee -a "$LOGFILE"
+        continue
+    fi
 
     echo "========== $example ==========" | tee -a "$LOGFILE"
 
