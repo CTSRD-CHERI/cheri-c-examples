@@ -121,3 +121,14 @@ Will build and run all ported cheri linux examples and save the results in the e
 ```
 cheri_examples_ported-cheri-linux-cherilinux0_20260225_191238.log
 ```
+
+You can also specify to only run c or cpp examples.  For example:
+```
+./build_and_run_all_cheri_examples.sh ported-cheri-linux cpp
+```
+
+And, if you want to skip specific examples, list them at the end of the command line arguments:
+
+```
+./build_and_run_all_cheri_examples.sh ported-cheri-linux cpp alignment1 alignment2
+```
