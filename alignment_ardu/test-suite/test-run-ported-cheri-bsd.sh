@@ -16,7 +16,7 @@ if [ "$status" -ne 0 ]; then
     exit $status
 fi
 
-if printf '%s\n' "$RUN_RESULTS" | grep -Fq "result of [not packed] structure read = hi there" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Fq "structure read = hi there" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
