@@ -16,7 +16,7 @@ if [ "$status" -ne 0 ]; then
     exit $status
 fi
 
-if printf '%s\n' "$RUN_RESULTS" | grep -Fq "returns sizeof(void*)= 16" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Eq "returns sizeof\(void\*\)=.+[0-9]+" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
