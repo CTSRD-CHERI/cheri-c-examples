@@ -19,7 +19,7 @@ fi
 REGEXP="[0-9A-Fa-f]+"
 
 # Test for first line.
-if printf '%s\n' "$RUN_RESULTS" | grep -Eq "ctest1: pointer-casts requires proper alignment a=0x$REGEXP .+ .da=$REGEXP" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Eq "ctest1: pointer-casts requires proper alignment a=0x$REGEXP.+da=$REGEXP" ; then
     # Test for second line.
     if printf '%s\n' "$RUN_RESULTS" | grep -Eq "ctest1, v=0x$REGEXP.+blah = 0x$REGEXP" ; then
         # Test succeeded
