@@ -11,6 +11,14 @@ status=$?
 
 echo "$BUILD_RESULTS"
 
+# Check if purecap flags were used
+if ! { grep -Fq -- "-march=morello" <<< "$BUILD_RESULTS" \
+    && grep -Fq -- "-mabi=purecap" <<< "$BUILD_RESULTS" \
+    && grep -Fq -- "--target=aarch64-linux-musl_purecap" <<< "$BUILD_RESULTS"; } ; then
+    echo "RESULT:  $NAME build failed.  Purecap not used during compile"
+    exit 1
+fi
+
 # Build should succeed and generate no integer to ptr cast warnings
 if (( status == 0 )); then
     if grep -Fq "warning: cast from provenance-free integer type to pointer type will give pointer that can not be dereferenced" <<< "$BUILD_RESULTS" ; then
