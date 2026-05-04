@@ -9,6 +9,14 @@ cd ../faulty-cheri-linux/
 BUILD_RESULTS=$( { ./make clean; make; } 2>&1)
 status=$?
 
+# Check if purecap flags were used
+if ! { grep -Fq -- "-march=morello" <<< "$BUILD_RESULTS" \
+    && grep -Fq -- "-mabi=purecap" <<< "$BUILD_RESULTS" \
+    && grep -Fq -- "--target=aarch64-linux-musl_purecap" <<< "$BUILD_RESULTS"; } ; then
+    echo "RESULT:  $NAME build failed.  Purecap not used during compile"
+    exit 1
+fi
+
 # The faulty cheri linux for the sigtest example shouldn't build.
 if (( status != 0 )); then
     if grep -Fq "error: use of undeclared identifier 'SIGPROT'" <<< "$BUILD_RESULTS" ; then
