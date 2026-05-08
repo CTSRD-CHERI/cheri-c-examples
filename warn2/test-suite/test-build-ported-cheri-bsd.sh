@@ -11,6 +11,13 @@ status=$?
 
 echo "$BUILD_RESULTS"
 
+# Check if purecap flags were used
+if ! { printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "-march=morello" \
+    && printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "-mabi=purecap"; } ; then
+    echo "RESULT:  $NAME build failed.  Purecap not used during compile"
+    exit 1
+fi
+
 # Build should succeed and generate no integer to ptr cast warning
 if [ "$status" -eq 0 ]; then
     if ! printf '%s\n' "$BUILD_RESULTS" | grep -Fq "warning: comparison between pointer and integer" ; then
