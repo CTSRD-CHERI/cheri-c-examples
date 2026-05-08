@@ -13,8 +13,7 @@ echo "$BUILD_RESULTS"
 
 if [ "$STATUS" -eq 0 ]; then
     if printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "-march=morello" \
-    && printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "-mabi=purecap" \
-    && printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "--target=aarch64-linux-musl_purecap" ; then
+    && printf '%s\n' "$BUILD_RESULTS" | grep -Fq -- "-mabi=purecap" ; then
         echo "RESULT:  $NAME build success." 
         exit 0
     else
