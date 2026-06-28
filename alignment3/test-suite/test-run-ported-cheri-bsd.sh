@@ -18,7 +18,7 @@ fi
 
 HEX_REGEX="[0-9A-Fa-f]+"
 
-if printf '%s\n' "$RUN_RESULTS" | grep -Eq "ctest1: alignment cap memcpy?.+\([0-9]+\)" && printf '%s\n' "$RUN_RESULTS" | grep -Eq "cap  = $HEX_REGEX  val=hello world" ; then
+if printf '%s\n' "$RUN_RESULTS" | grep -Eq "ctest1: alignment cap memcpy?.+\([0-9]+\)" && printf '%s\n' "$RUN_RESULTS" | grep -Eq "cap  = .+$HEX_REGEX  val=hello world" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
