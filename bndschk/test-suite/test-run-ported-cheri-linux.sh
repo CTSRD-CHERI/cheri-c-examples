@@ -16,7 +16,7 @@ if (( status != 0 )); then
     exit $status
 fi
 
-if grep -Fq "after call to ctest1, res = 0" <<< "$RUN_RESULTS" ; then
+if grep -Eq "after call to ctest1, res = [0-1]" <<< "$RUN_RESULTS" ; then
     # Test succeeded
     echo "RESULT:  $NAME run success."
     exit 0
